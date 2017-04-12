@@ -1,0 +1,8 @@
+
+Vsquid:S1118":Add a private constructor to hide the implicit public one.(¶ÀÅæ8®ªÕ¹´+
+lsquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(’­£¹ýÿÿÿÿ8°óÆ¶µ+
+Fsquid:S1481"*Remove this unused "pages" local variable.(Ì²ÆË8°óÆ¶µ+
+Usquid:S1854"9Remove this useless assignment to local variable "pages".(Ì²ÆË8°óÆ¶µ+
+_squid:UselessImportCheck"6Remove this unused import 'org.boon.json.JsonFactory'.(†ø€8°óÆ¶µ+
+Rsquid:UselessImportCheck")Remove this unused import 'java.io.File'.(†Ð¥Å8°óÆ¶µ+
+`squid:UselessImportCheck"7Remove this unused import 'org.boon.json.ObjectMapper'.(ÿµï¨8°óÆ¶µ+

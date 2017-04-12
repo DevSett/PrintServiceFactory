@@ -1,0 +1,19 @@
+{
+  "stickerObjects": [
+    {
+      "name": "Имя: "
+    },
+    {
+      "sex": "Пол: "
+    },
+    {
+      "stickerSpace": 11
+    },
+    {
+      "age": "Возраст: "
+    },
+    {
+      "emailAddress": "Почта: "
+    }
+  ]
+}

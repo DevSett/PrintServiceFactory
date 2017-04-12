@@ -1,0 +1,46 @@
+{
+  "stickerObjects": [
+    {
+      "type": "stickerString",
+      "template": "Имя: {{ name : string }}",
+      "options": {
+        "position": "center"
+      }
+    },
+    {
+      "type": "stickerString",
+      "template": "Имя: {{ name : string }}",
+      "options": {
+        "position": "center"
+      }
+    },
+    {
+      "type": "stickerString",
+      "template": "Имя: {{ name : string }}",
+      "options": {
+        "position": "center"
+      }
+    },
+    {
+      "type": "stickerString",
+      "template": "Имя: {{ name : string }}",
+      "options": {
+        "position": "center"
+      }
+    },
+    {
+      "type": "stickerString",
+      "template": "Имя: {{ name : string }}",
+      "options": {
+        "position": "center"
+      }
+    },
+    {
+      "type": "stickerString",
+      "template": "Имя: {{ name : string }}",
+      "options": {
+        "position": "center"
+      }
+    }
+  ]
+}
