@@ -21,7 +21,7 @@ public class Row {
     }
 
     public void setTabSizePx(int tabSizePx) {
-        this.tabSizePx = tabSizePx;
+        this.tabSizePx = (int)(tabSizePx*2.8d);
     }
 
     public int getStartStickerSizePx() {
@@ -29,6 +29,6 @@ public class Row {
     }
 
     public void setStartStickerSizePx(int startStickerSizePx) {
-        this.startStickerSizePx = startStickerSizePx;
+        this.startStickerSizePx = (int)(startStickerSizePx*2.8d);
     }
 }

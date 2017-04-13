@@ -1,4 +1,4 @@
-package mip.classes.printservice;
+package mip.enums;
 
 /**
  * Created by killsett on 07.04.17.

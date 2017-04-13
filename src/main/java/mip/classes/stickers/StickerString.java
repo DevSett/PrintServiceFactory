@@ -34,6 +34,7 @@ public class StickerString implements StickerObject {
         if (font != null) {
             graphics2D.setFont(font);
         }
+
         graphics2D.drawString(line, 0, getLineHeight(graphics2D));
     }
 

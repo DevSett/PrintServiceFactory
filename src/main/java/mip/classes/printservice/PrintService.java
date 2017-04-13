@@ -1,6 +1,7 @@
 package mip.classes.printservice;
 
 import mip.classes.page.Page;
+import mip.enums.Error;
 
 import java.awt.print.*;
 import java.util.Arrays;

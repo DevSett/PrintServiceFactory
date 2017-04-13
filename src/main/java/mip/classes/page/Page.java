@@ -1,21 +1,20 @@
 package mip.classes.page;
 
-import mip.classes.configurations.Configuration;
+import mip.abstractClasses.AbstractPage;
 import mip.classes.configurations.Sticker;
+import mip.enums.Orienatation;
 import mip.interfaces.StickerObject;
 
 import java.awt.*;
-import java.awt.image.BufferedImage;
+import java.awt.geom.AffineTransform;
 import java.awt.print.PageFormat;
-import java.awt.print.Printable;
 import java.awt.print.PrinterException;
 import java.util.List;
 
 /**
  * Created by killsett on 04.04.17.
  */
-public class Page implements Printable {
-    private Configuration configuration;
+public class Page extends AbstractPage {
     private List<StickerObject>[] stickers;
 
     /**
@@ -25,32 +24,29 @@ public class Page implements Printable {
         this.stickers = stickers;
     }
 
-    /**
-     * Установка кофигуратора строки и стекров на строке
-     *
-     * @param configuration - конфигуратор
-     */
-    public void setConfigurator(Configuration configuration) {
-        this.configuration = configuration;
-    }
-
-    public Configuration getConfigurator() {
-        return configuration;
-    }
 
     @Override
     public int print(Graphics graphics, PageFormat pageFormat, int pageIndex) throws PrinterException {
-        if (stickers == null || configuration == null) {
+        if (stickers == null || getConfigurator() == null) {
             return NO_SUCH_PAGE;
         }
-        graphics.setColor(Color.WHITE);
-        graphics.fillRect(0, 0, getWidth(), getHeight());
 
-        int width = configuration.getRow().getStartStickerSizePx();
 
+        int width = getConfigurator().getRow().getStartStickerSizePx();
+
+        // time constructions
+        for (Sticker sticker : getConfigurator().getStickers()) {
+            if (Orienatation.LANDSCAPE.name().toLowerCase().equals(sticker.getOrientation())) {
+                PageRotate pageRotate = new PageRotate(stickers);
+                pageRotate.setConfigurator(getConfigurator());
+                pageRotate.print(graphics, pageFormat, pageIndex);
+                return PAGE_EXISTS;
+            }
+        }
+        //
         for (int indexSticker = 0; indexSticker < stickers.length; indexSticker++) {
 
-            Sticker currentSticker = configuration.getStickers().get(indexSticker);
+            Sticker currentSticker = getConfigurator().getStickers().get(indexSticker);
 
             Font font = new Font(
                     currentSticker.getFontCustom().getFont(),
@@ -61,35 +57,33 @@ public class Page implements Printable {
             graphics.setFont(font);
 
             if (indexSticker != 0) {
-                Sticker previousSticker = configuration.getStickers().get(indexSticker - 1);
-                if ("landscape".equals(previousSticker.getOrientation()))
-                    width += previousSticker.getSize().getHeight();
+                Sticker previousSticker = getConfigurator().getStickers().get(indexSticker - 1);
+                if (Orienatation.LANDSCAPE.name().toLowerCase().equals(previousSticker.getOrientation()))
+                    width += (previousSticker.getSize().getWidth());
                 else
                     width += previousSticker.getSize().getWidth();
             }
 
-
-            BufferedImage bufferedImage;
-
-            if ("landscape".equals(currentSticker.getOrientation())) {
-                bufferedImage = getStickerImage(
+            if (Orienatation.LANDSCAPE.name().toLowerCase().equals(currentSticker.getOrientation())) {
+                getStickerImage(
                         graphics,
                         stickers[indexSticker],
                         currentSticker,
+                        width,
                         true
                 );
             } else {
-                bufferedImage = getStickerImage(
+                getStickerImage(
                         graphics,
                         stickers[indexSticker],
                         currentSticker,
+                        width,
                         false
                 );
             }
 
 
-            graphics.drawImage(bufferedImage, width, 0, null);
-            width += configuration.getRow().getTabSizePx();
+            width += getConfigurator().getRow().getTabSizePx();
 
         }
         return PAGE_EXISTS;
@@ -104,95 +98,65 @@ public class Page implements Printable {
      * @param rotate         - разворот стикера на 90 градусов
      * @return
      */
-    private static BufferedImage getStickerImage(Graphics graphics, List<StickerObject> stickerObjects, Sticker sticker, boolean rotate) {
-        BufferedImage bufferedImage =
-                new BufferedImage(
-                        sticker.getSize().getWidth(),
-                        sticker.getSize().getHeight(),
-                        BufferedImage.TYPE_INT_RGB
-                );
+    private static Graphics getStickerImage(Graphics graphics, List<StickerObject> stickerObjects, Sticker sticker, int width, boolean rotate) {
 
-        Graphics2D graphicsImage = bufferedImage.createGraphics();
-        graphicsImage.setFont(graphics.getFont());
+        Graphics2D graphics2D = (Graphics2D) graphics;
+        graphics2D.setFont(graphics.getFont());
 
-        graphicsImage.fillRect(0, 0, bufferedImage.getWidth(), bufferedImage.getHeight());
-        graphicsImage.setColor(Color.BLACK);
 
         int sizeYLine = sticker.getPadding().getUp();
+        int currentSize = sticker.getSize().getWidth();
         for (int indexLine = 0; indexLine < stickerObjects.size(); indexLine++) {
             StickerObject stickerObject = stickerObjects.get(indexLine);
-            if (indexLine != 0) {
-                sizeYLine += stickerObject.getLineHeight(graphics);
-            }
-            Graphics newSub = graphicsImage.create(
-                    sticker.getPadding().getLeft(),
-                    sizeYLine
-                           /* + sticker.getUpperBorder() * indexLine -  +отступы между строчками*/
-                    ,
-                    sticker.getSize().getWidth(),
-                    stickerObject.getLineHeight(graphics)
-            );
 
+            Graphics newSub;
+            if (!rotate) {
+                if (indexLine != 0) {
+                    sizeYLine += stickerObject.getLineHeight(graphics);
+                }
+                newSub = graphics2D.create(
+                        sticker.getPadding().getLeft() + width,
+                        sizeYLine,
+                        sticker.getSize().getWidth(),
+                        stickerObject.getLineHeight(graphics)
+                );
+            } else {
+                //
+                newSub = graphics2D.create(
+                        width + currentSize,
+                        0,
+                        stickerObject.getLineHeight(graphics),
+                        sticker.getSize().getHeight()
+                );
+                currentSize -= stickerObject.getLineHeight(graphics);
+                newSub.setFont(newSub.getFont().deriveFont(new AffineTransform(AffineTransform.getRotateInstance(Math.toRadians(90)))));
+
+                //Не рабочий вариант поворота
+            }
             stickerObject.print((Graphics2D) newSub);
         }
 
-        return rotate ? rotateCw(bufferedImage) : bufferedImage;
+        return graphics2D;
     }
 
-    /**
-     * Разворот изображения на 90 градусов по часовой
-     *
-     * @param img - изображение которое будет перерисованно
-     * @return новое повернутое изображение
-     */
-    private static BufferedImage rotateCw(BufferedImage img) {
-        int width = img.getWidth();
-        int height = img.getHeight();
-        BufferedImage newImage = new BufferedImage(height, width, img.getType());
+//    /**
+//     * Разворот изображения на 90 градусов по часовой
+//     *
+//     * @param img - изображение которое будет перерисованно
+//     * @return новое повернутое изображение
+//     */
+//    private static BufferedImage rotateCw(BufferedImage img) {
+//        int width = img.getWidth();
+//        int height = img.getHeight();
+//        BufferedImage newImage = new BufferedImage(height, width, img.getType());
+//
+//        for (int i = 0; i < width; i++)
+//            for (int j = 0; j < height; j++)
+//                newImage.setRGB(height - 1 - j, i, img.getRGB(i, j));
+//
+//        return newImage;
+//    }
 
-        for (int i = 0; i < width; i++)
-            for (int j = 0; j < height; j++)
-                newImage.setRGB(height - 1 - j, i, img.getRGB(i, j));
 
-        return newImage;
-    }
-
-    /**
-     * @return Количество стикеров в строке
-     */
-    public int getCountStickers() {
-        return configuration.getRow().getCountSticker();
-    }
-
-    /**
-     * @return magic
-     */
-    public int getWidth() {
-        int width = configuration.getRow().getStartStickerSizePx();
-        for (Sticker sticker : configuration.getStickers()) {
-            width += sticker.getSize().getWidth();
-            width += configuration.getRow().getTabSizePx();
-        }
-        return width;
-    }
-
-    /**
-     * @return magic
-     */
-    public int getHeight() {
-        int heightMax = 0;
-        int upMax = 0;
-        for (Sticker sticker : configuration.getStickers()) {
-            if (heightMax < sticker.getSize().getHeight()) {
-                heightMax = sticker.getSize().getHeight();
-            }
-            if (upMax < sticker.getPadding().getUp()) {
-                upMax = sticker.getPadding().getUp();
-            }
-
-        }
-
-        return heightMax + upMax;
-    }
 }
 

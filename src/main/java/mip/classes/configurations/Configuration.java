@@ -1,7 +1,7 @@
 package mip.classes.configurations;
 
 import mip.classes.jsons.JSONParserConfiguration;
-import mip.classes.printservice.Error;
+import mip.enums.Error;
 import org.json.simple.parser.ParseException;
 
 import java.io.IOException;

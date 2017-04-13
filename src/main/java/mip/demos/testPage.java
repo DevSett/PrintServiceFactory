@@ -22,7 +22,7 @@ import java.util.List;
 public class testPage {
     public static void main(String[] args) throws PrinterException, IOException, ParseException {
 
-        List<StickerObject>[] stickerObjects = new List[2];
+        List<StickerObject>[] stickerObjects = new List[3];
         stickerObjects[0] = new ArrayList<>();
         stickerObjects[0].add(new StickerString("Иванов иванович"));
         stickerObjects[0].add(new StickerSpace(11));
@@ -35,15 +35,25 @@ public class testPage {
         stickerObjects[1].add(new StickerString("Иванов иванович2"));
         stickerObjects[1].add(new StickerString("Иванов иванович3"));
         stickerObjects[1].add(new StickerString("Иванов иванович4"));
+        stickerObjects[2] = new ArrayList<>();
+        stickerObjects[2].add(new StickerString("Иванов иванович"));
+        stickerObjects[2].add(new StickerString("Иванов иванович1"));
+        stickerObjects[2].add(new StickerString("Иванов иванович2"));
+        stickerObjects[2].add(new StickerString("Иванов иванович3"));
+        stickerObjects[2].add(new StickerString("Иванов иванович4"));
 
-        Page page = new FabricPage(new Configuration("Connector1.json")).getPage(stickerObjects);
-        BufferedImage bufferedImage = new BufferedImage(444, 80, BufferedImage.TYPE_INT_RGB);
+        Configuration configuration = new Configuration("Connector1.json");
+        configuration.parse();
+
+        Page page = new FabricPage(configuration).getPage(stickerObjects);
+        BufferedImage bufferedImage = new BufferedImage(444, 800, BufferedImage.TYPE_INT_RGB);
         page.print(bufferedImage.getGraphics(), null, 0);
         File file = new File("123.png");
 
 
         try {
             ImageIO.write(bufferedImage, "png", file);
+
         } catch (IOException e) {
             e.printStackTrace();
         }
