@@ -18,6 +18,15 @@ public class Configuration {
 
     public Configuration(String path) {
         this.path = path;
+        parse();
+    }
+
+    public String getPath() {
+        return path;
+    }
+
+    public void setPath(String path) {
+        this.path = path;
     }
 
     public Error parse() {

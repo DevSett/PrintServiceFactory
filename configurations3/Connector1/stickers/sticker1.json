@@ -1,0 +1,15 @@
+{
+  "size": {
+    "width": 40,
+    "height": 30
+  },
+  "padding": {
+    "left": 0,
+    "up": 0
+  },
+  "orientation": "landscape1",
+  "fontCustom": {
+    "fontSize": 11,
+    "font": "Arial"
+  }
+}

@@ -43,7 +43,6 @@ public class testPage {
         stickerObjects[2].add(new StickerString("Иванов иванович4"));
 
         Configuration configuration = new Configuration("Connector1.json");
-        configuration.parse();
 
         Page page = new FabricPage(configuration).getPage(stickerObjects);
         BufferedImage bufferedImage = new BufferedImage(444, 800, BufferedImage.TYPE_INT_RGB);

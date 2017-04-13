@@ -1,0 +1,24 @@
+{
+  "stickerObjects": [
+    {
+      "type": "stickerString",
+      "template": "Имя: -> {{ name : String }}"
+    },
+    {
+      "type": "stickerString",
+      "template": "Пол: -> {{ sex : Boolean }}"
+    },
+    {
+      "type": "stickerSpace",
+      "template": "11-> {{ value }}"
+    },
+    {
+      "type": "stickerString",
+      "template": "Возраст: -> {{ age : Integer }}"
+    },
+    {
+      "type": "stickerString",
+      "template": "Почта: -> {{ emailAddress : String }}"
+    }
+  ]
+}

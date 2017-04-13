@@ -41,7 +41,6 @@ public class Demo {
 
 
         Configuration configuration = new Configuration("Connector1.json");
-        configuration.parse();
 
 
         ToStickerConverter<Person> converter1 = new GenerateStickerConverter().create(configuration.getConverters().get(0));

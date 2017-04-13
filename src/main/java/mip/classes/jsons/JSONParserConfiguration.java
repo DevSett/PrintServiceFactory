@@ -28,9 +28,11 @@ public class JSONParserConfiguration {
     private List<Sticker> stickers = new ArrayList<>();
     private Row row = new Row();
     private List<Converter> converters = new ArrayList<>();
+    private String pathCategor;
 
     public JSONParserConfiguration(String nameConnector) {
         this.connector = nameConnector;
+        this.pathCategor = connector.substring(0, connector.lastIndexOf("."));
     }
 
     public List<Sticker> getStickers() {
@@ -84,7 +86,7 @@ public class JSONParserConfiguration {
 
         for (String name : names) {
             JSONParser parserSticker = new JSONParser();
-            Object object = parserSticker.parse(new FileReader(name + ".json"));
+            Object object = parserSticker.parse(new FileReader(pathCategor + "/converters/" + name + ".json"));
             JSONObject jsonObjectSticker = (JSONObject) object;
 
             converters.forEach(converter -> {
@@ -170,7 +172,7 @@ public class JSONParserConfiguration {
 
     private void row(String path) throws IOException, ParseException {
         JSONParser parserRow = new JSONParser();
-        Object object = parserRow.parse(new FileReader(path + ".json"));
+        Object object = parserRow.parse(new FileReader(pathCategor + "/" + path + ".json"));
         JSONObject jsonObjectRow = (JSONObject) object;
 
         row.setCountSticker(VtoInt.parse(jsonObjectRow.get("count")));
@@ -189,7 +191,7 @@ public class JSONParserConfiguration {
 
         for (String name : names) {
             JSONParser parserSticker = new JSONParser();
-            Object object = parserSticker.parse(new FileReader(name + ".json"));
+            Object object = parserSticker.parse(new FileReader(pathCategor + "/stickers/" + name + ".json"));
             JSONObject jsonObjectSticker = (JSONObject) object;
 
             stickers.forEach(sticker -> {
