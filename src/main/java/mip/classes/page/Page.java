@@ -118,7 +118,7 @@ public class Page extends AbstractPage {
                         sticker.getPadding().getLeft() + width,
                         sizeYLine,
                         sticker.getSize().getWidth(),
-                        stickerObject.getLineHeight(graphics)
+                        stickerObject.getLineHeight(graphics) * 2
                 );
             } else {
                 //

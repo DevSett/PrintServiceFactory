@@ -18,7 +18,7 @@ public class Configuration {
 
     public Configuration(String path) {
         this.path = path;
-        parse();
+        parse().name();
     }
 
     public String getPath() {
@@ -71,5 +71,20 @@ public class Configuration {
 
     public void setConverters(List<Converter> converters) {
         this.converters = converters;
+    }
+
+    public String getName() {
+
+        if (path.indexOf('/') != -1)
+            return path.substring(path.lastIndexOf('/') + 1, path.length());
+        if (path.indexOf('\\') != -1)
+            return path.substring(path.lastIndexOf('\\') + 1, path.length());
+
+        return path;
+    }
+
+    @Override
+    public String toString() {
+        return getName();
     }
 }

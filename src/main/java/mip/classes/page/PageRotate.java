@@ -117,7 +117,7 @@ public class PageRotate extends AbstractPage {
                            /* + sticker.getUpperBorder() * indexLine -  +отступы между строчками*/
                     ,
                     sticker.getSize().getWidth(),
-                    stickerObject.getLineHeight(graphics)
+                    stickerObject.getLineHeight(graphics)*2
             );
 
             stickerObject.print((Graphics2D) newSub);

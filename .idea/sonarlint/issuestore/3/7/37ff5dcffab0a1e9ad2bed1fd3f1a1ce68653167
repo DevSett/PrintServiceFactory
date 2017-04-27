@@ -1,2 +1,7 @@
 
+nsquid:S1132"SMove the "stickerString" string literal on the left side of this string comparison.(î„’8úè©¶+
+bsquid:S1192"FDefine a constant instead of duplicating this literal ".json" 4 times.(í¿û’8úè©¶+
+Asquid:S1166"%Either log or rethrow this exception.(ıàÑÎ8úè©¶+
+nsquid:S3776"RRefactor this method to reduce its Cognitive Complexity from 61 to the 15 allowed.( ¥œ 8úè©¶+
+Dsquid:S1148"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8úè©¶+
 Ÿsquid:S1160"‚Refactor this method to throw at most one checked exception instead of: java.io.IOException, org.json.simple.parser.ParseException(­ƒÇµ8ü¯ù¹´+

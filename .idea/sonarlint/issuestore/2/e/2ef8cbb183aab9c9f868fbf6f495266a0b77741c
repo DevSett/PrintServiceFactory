@@ -1,0 +1,6 @@
+
+Rsquid:S1213"8Move this variable to comply with Java Code Conventions.(­‡âƒýÿÿÿÿ
+Lsquid:S1213"8Move this variable to comply with Java Code Conventions.(ß­º*
+^squid:S2147"DCombine this catch with the one at line 33, which has the same body.(âÃƒŠýÿÿÿÿ
+N
+squid:S106";Replace this usage of System.out or System.err by a logger.(õëô

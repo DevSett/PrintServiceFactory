@@ -1,6 +1,6 @@
 package mip.demos;
 
-import mip.classes.configurations.Configuration;
+import mip.classes.configurations.service.ServiceConfiguration;
 import mip.classes.page.FabricPage;
 import mip.classes.page.Page;
 import mip.classes.stickers.StickerSpace;
@@ -22,9 +22,9 @@ import java.util.List;
 public class testPage {
     public static void main(String[] args) throws PrinterException, IOException, ParseException {
 
-        List<StickerObject>[] stickerObjects = new List[3];
+        List<StickerObject>[] stickerObjects = new List[2];
         stickerObjects[0] = new ArrayList<>();
-        stickerObjects[0].add(new StickerString("Иванов иванович"));
+        stickerObjects[0].add(new StickerString("ЦцЩщРр иванович"));
         stickerObjects[0].add(new StickerSpace(11));
         stickerObjects[0].add(new StickerString("Иванов иванович2"));
         stickerObjects[0].add(new StickerString("Иванов иванович3"));
@@ -35,16 +35,11 @@ public class testPage {
         stickerObjects[1].add(new StickerString("Иванов иванович2"));
         stickerObjects[1].add(new StickerString("Иванов иванович3"));
         stickerObjects[1].add(new StickerString("Иванов иванович4"));
-        stickerObjects[2] = new ArrayList<>();
-        stickerObjects[2].add(new StickerString("Иванов иванович"));
-        stickerObjects[2].add(new StickerString("Иванов иванович1"));
-        stickerObjects[2].add(new StickerString("Иванов иванович2"));
-        stickerObjects[2].add(new StickerString("Иванов иванович3"));
-        stickerObjects[2].add(new StickerString("Иванов иванович4"));
 
-        Configuration configuration = new Configuration("Connector1.json");
 
-        Page page = new FabricPage(configuration).getPage(stickerObjects);
+        ServiceConfiguration serviceConfiguration = new ServiceConfiguration("configurations2");
+
+        Page page = new FabricPage(serviceConfiguration.getConfigurations().get(1)).getPage(stickerObjects);
         BufferedImage bufferedImage = new BufferedImage(444, 800, BufferedImage.TYPE_INT_RGB);
         page.print(bufferedImage.getGraphics(), null, 0);
         File file = new File("123.png");

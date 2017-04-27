@@ -1,8 +1,4 @@
 
-lsquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(½Å¸Ðùÿÿÿÿ8ÈÓÒ©¶+
-gsquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(¥ÉÌ8ÈÓÒ©¶+
-gsquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(ùè½¡8ÈÓÒ©¶+
-asquid:S1226"EIntroduce a new variable instead of reusing the parameter "graphics".(óÏÓ–8ÈÓÒ©¶+
-asquid:S1226"EIntroduce a new variable instead of reusing the parameter "graphics".(óÏÓ–8ÈÓÒ©¶+
-^squid:S1226"BIntroduce a new variable instead of reusing the parameter "width".(´²ÞÕ8ÈÓÒ©¶+
-Fsquid:S1172"*Remove this unused method parameter "row".(—Æò8ÈÓÒ©¶+
+squid:S1157"cReplace these toUpperCase()/toLowerCase() and equals() calls with a single equalsIgnoreCase() call.(¦œ¬‚8˜²¶+
+squid:S1157"cReplace these toUpperCase()/toLowerCase() and equals() calls with a single equalsIgnoreCase() call.(“†µØ8Ð¯ˆ²¶+
+~squid:S1157"cReplace these toUpperCase()/toLowerCase() and equals() calls with a single equalsIgnoreCase() call.(Û¤8ÜÂ‰²¶+

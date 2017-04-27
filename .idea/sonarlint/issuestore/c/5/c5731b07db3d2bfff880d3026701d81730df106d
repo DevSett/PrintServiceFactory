@@ -1,0 +1,12 @@
+
+esquid:S2147"DCombine this catch with the one at line 43, which has the same body.(âÃƒŠıÿÿÿÿ8¶Àç•´+
+Ksquid:S1066"/Merge this if statement with the enclosing one.(ÕßïÏ8¯ñÇ“´+
+Fsquid:S1166"%Either log or rethrow this exception.(†ûÈÀùÿÿÿÿ8Á‡Ì“´+
+Ysquid:S1213"8Move this variable to comply with Java Code Conventions.(ü“²Õøÿÿÿÿ8…¡¤‘´+
+Asquid:S1166"%Either log or rethrow this exception.(ï­£Ä8¶Àç•´+
+tsquid:S00120"WRename this package name to match the regular expression '^[a-z]+(\.[a-z][a-z0-9]*)*$'.(ûªÓƒ8üÖŠ´+
+Dsquid:S1148"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8¶Àç•´+
+`squid:S2147"DCombine this catch with the one at line 43, which has the same body.(ï­£Ä8¶Àç•´+
+qsquid:S00122"TAt most one statement is allowed per line, but 2 statements were found on this line.(ÕßïÏ8¼ÏË“´+
+Dsquid:S1148"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8¶Àç•´+
+Dsquid:S1148"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8Á‡Ì“´+

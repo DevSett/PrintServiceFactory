@@ -12,6 +12,7 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
+import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -32,7 +33,7 @@ public class JSONParserConfiguration {
 
     public JSONParserConfiguration(String nameConnector) {
         this.connector = nameConnector;
-        this.pathCategor = connector.substring(0, connector.lastIndexOf("."));
+        this.pathCategor = new File(connector).getParentFile().getParent();
     }
 
     public List<Sticker> getStickers() {
@@ -172,12 +173,13 @@ public class JSONParserConfiguration {
 
     private void row(String path) throws IOException, ParseException {
         JSONParser parserRow = new JSONParser();
-        Object object = parserRow.parse(new FileReader(pathCategor + "/" + path + ".json"));
+        Object object = parserRow.parse(new FileReader(pathCategor + "/rows/" + path + ".json"));
         JSONObject jsonObjectRow = (JSONObject) object;
 
         row.setCountSticker(VtoInt.parse(jsonObjectRow.get("count")));
         row.setStartStickerSizePx(VtoInt.parse(jsonObjectRow.get("startStickerSizePx")));
         row.setTabSizePx(VtoInt.parse(jsonObjectRow.get("tabSizePx")));
+        row.setPath(pathCategor + "/rows/" + path + ".json");
     }
 
     private void stickers(JSONArray namesArray) throws IOException, ParseException {

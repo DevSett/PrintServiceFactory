@@ -4,6 +4,7 @@ package mip.classes.configurations;
  * Created by killsett on 04.04.17.
  */
 public class Row {
+    private String path;
     private int countSticker;
     private int tabSizePx;
     private int startStickerSizePx;
@@ -21,7 +22,7 @@ public class Row {
     }
 
     public void setTabSizePx(int tabSizePx) {
-        this.tabSizePx = (int)(tabSizePx*2.8d);
+        this.tabSizePx = (int) (tabSizePx * 2.8d);
     }
 
     public int getStartStickerSizePx() {
@@ -29,6 +30,14 @@ public class Row {
     }
 
     public void setStartStickerSizePx(int startStickerSizePx) {
-        this.startStickerSizePx = (int)(startStickerSizePx*2.8d);
+        this.startStickerSizePx = (int) (startStickerSizePx * 2.8d);
+    }
+
+    public String getPath() {
+        return path;
+    }
+
+    public void setPath(String path) {
+        this.path = path;
     }
 }

@@ -4,12 +4,12 @@
     "height": 30
   },
   "padding": {
-    "left": 0,
-    "up": 0
+    "left": 1,
+    "up": 32
   },
-  "orientation": "landscape2",
+  "orientation": "landscape4",
   "fontCustom": {
-    "fontSize": 11,
-    "font": "Arial"
+    "fontSize": 15,
+    "font": "Ariasl"
   }
 }
